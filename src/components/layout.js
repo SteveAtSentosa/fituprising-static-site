@@ -1,5 +1,7 @@
 import { ce } from '../utils/render';
+import { Global, css } from '@emotion/core'
 import { makeStyles } from '../utils/style';
+
 
 import Header from './header'
 
@@ -15,11 +17,17 @@ const Layout = props =>  {
   const { location, title, children } = props
   const path = location.pathname;
 
+  const globalStyles = css`
+    h3 { font-size: 1.125rem !important; color #673ab7 !important;}
+    p { font-size: 100% !important; }
+  `
+
   const style = makeStyles({
-    root: tw`max-w-2xl, px-32 py-10`,
+    root: [ tw`px-8 py-10 md:px-32 `, { maxWidth: 800 }]
   })
 
   return ce('div', style('root'),
+    ce(Global, {styles: globalStyles }),
     ce(Header, { title, pages, path } ),
     children
   )

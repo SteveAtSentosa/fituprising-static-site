@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core'
 // allows you to use `css` in place of `className`
 export const ce = jsx
 
-// simplify add react proptypes and defaults to a component
+// simplify addition of react proptypes and defaults to a component
 // propSpec = [ propName, propType, defaultValue]
 
 const addComponentPropSpec = (toThisSpec, propName, propType, propDefault) => ({

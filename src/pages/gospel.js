@@ -7,8 +7,6 @@ import SEO from '../components/seo'
 import { rhythm } from '../utils/typography'
 
 const Gospel = ({ data, location }) => {
-  console.log('location: ', location);
-
   return ce(Layout, { location, title: 'Gospel' }
   )
 }

@@ -14,5 +14,6 @@ export const makeStyles = stylesObject => style =>
 
 // composed styles
 export const s = {
-  'no-underline': tw`no-underline shadow-none`
+  'no-underline': tw`no-underline shadow-none`,
+  'h-borders':  tw`border-solid border-grey border-b border-t border-l-0 border-r-0`
 }

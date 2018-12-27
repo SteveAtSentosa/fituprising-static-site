@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Starter Blog',
-    author: 'Kyle Mathews',
+    title: 'Fit Uprising',
+    author: 'Steven Saunders',
     description: 'A starter blog demonstrating what Gatsby can do.',
-    siteUrl: 'https://gatsby-starter-blog-demo.netlify.com/',
+    siteUrl: 'https://github.com/SteveAtSentosa/fitup',
     social: {
       twitter: 'kylemathews',
     },
@@ -57,7 +57,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
+        name: `Fit Uprising`,
         short_name: `GatsbyJS`,
         start_url: `/`,
         background_color: `#ffffff`,

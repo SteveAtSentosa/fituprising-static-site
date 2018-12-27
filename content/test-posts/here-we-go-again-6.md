@@ -1,6 +1,6 @@
 ---
-title: Here We Go Again, again and again
-date: "2018-12-25 12:23:11"
+title: Here We Go Again 6
+date: "2018-12-26"
 summary: I've done this before, I've gained and lost 100's of pounds.  Time to lose again.
 ---
 

@@ -47,6 +47,8 @@ let colors = {
   'fu-purple': '#673ab7',
   'fu-green': '#8bc34a',
   'fu-amber': '#ffc107',
+  'fu-title-blue': '#2196f3',
+
 
   // 'amber-400': '#ffca28',
   // 'amber-500': '#ffc107',
@@ -785,6 +787,9 @@ module.exports = {
     '4/5': '80%',
     '1/6': '16.66667%',
     '5/6': '83.33333%',
+    'sm': '50rem',
+    'md': '50rem',
+    'lg': '50rem',
     full: '100%',
     screen: '100vw',
   },

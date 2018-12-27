@@ -1,72 +1,59 @@
-import { graphql } from 'gatsby'
-import { withState } from 'recompose';
+import { Link, graphql } from 'gatsby'
 import { pathOr } from 'ramda'
 import { ce } from '../utils/render';
-import { makeStyles, makeStyles2 } from '../utils/style';
-import { innerHtml } from '../utils/render';
+import { makeStyles, s } from '../utils/style';
 import Layout from '../components/layout'
 
-const Explore = ({ data, location, articleIdx, setArticleIdx }) => {
+
+//*****************************************************************************
+// Explore Component
+//*****************************************************************************
+
+const Explore = ({ data, location }) => {
 
   const edges = pathOr([], ['allMarkdownRemark', 'edges' ], data);
-  const articles = edges.map( ({ node }) => ({
-    frontmatter: node.frontmatter,
-    html: node.html,
-  }));
-
-  const style = makeStyles({
-    root: tw`flex`,
-    articleList: tw`w-1/4 mr-8`,
-    article: tw`w-3/4`
-  });
-
-  const onClick = idx => setArticleIdx(idx);
+  const articles = edges.map( ({ node }) =>({
+      slug: pathOr('', ['fields', 'slug'], node),
+      frontmatter: node.frontmatter,
+    })
+  );
 
   return (
   ce(Layout, { location, title: 'Explore Your Mind' },
-    ce('div', style('root'),
-      ce(ArticleList, { ...style('articleList'), articles, onClick }),
-      ce(Article, { ...style('article'), article: articles[articleIdx] })
+    ce('div', 0, articles.map((article, key) =>
+      ce(ArticleTeaser, { key, article }))
     )
   ))
 }
 
-export default withState(
-  'articleIdx', 'setArticleIdx', 0
-)(Explore);
+export default Explore;
 
 //*****************************************************************************
 // helper components
 //*****************************************************************************
 
-function ArticleList({ articles, onClick, className }) {
+
+function ArticleTeaser({ article}) {
 
   const style = makeStyles({
-    root: [ tw`p-2 rounded font-mont bg-grey-200 overflow-scroll`, className ],
-    title: tw`text-xs p-2 text-fu-purple opacity-75 hover:underline hover:cursor-pointer`
-  });
-
-  return (
-  ce('div', style('root'), articles.map( (article, idx) =>
-    ce('div', { ...style('title'), key: idx, onClick: () => onClick(idx) },
-      article.frontmatter.title)
-    )
-  ))
-}
-
-function Article({ article, className}) {
-
-  const style = makeStyles({
-    root: [ tw``, className],
-    title: tw`-mt-1`
+    root: tw`mb-12`,
+    date: tw`text-xs font-light text-grey-400`,
+    title: [ tw`text-lg font-semibold text-fu-purple leading-tight`, s['no-underline']],
+    teaser: tw`mt-1 text-sm`,
+    more: [ tw`text-red text-xs pl-2`, s['no-underline'] ]
   });
 
   return (
   ce('div', style('root'),
-    ce('h3', style('title'), article.frontmatter.title),
-    ce('div', innerHtml(article.html))
-  ))
+    ce('div', style('date'), article.frontmatter.date),
+    ce(Link, { ...style('title'), to: article.slug }, article.frontmatter.title),
+    ce('div', style('teaser'),
+      ce('span', 0, article.frontmatter.summary),
+      ce(Link, { ...style('more'), to: article.slug }, '(read more)')
+    )
 
+
+  ))
 }
 
 //*****************************************************************************
@@ -76,7 +63,9 @@ function Article({ article, className}) {
 export const pageQuery = graphql`
 {
   allMarkdownRemark(
-    filter: { fileAbsolutePath: {regex : "\/content\/explore/"}},
+    filter: { fileAbsolutePath: {regex : "\/content\/explore/"}}
+    sort: { order: DESC, fields: [frontmatter___date] }
+    limit: 1000
   ) {
     edges {
       node {
@@ -85,10 +74,30 @@ export const pageQuery = graphql`
           date
           summary
         }
-        html
+        fields {
+          slug
+        }
       }
     }
   }
 }`
+
+
+// {
+//   allMarkdownRemark(
+//     filter: { fileAbsolutePath: {regex : "\/content\/explore/"}},
+//   ) {
+//     edges {
+//       node {
+//         frontmatter {
+//           title
+//           date
+//           summary
+//         }
+//         html
+//       }
+//     }
+//   }
+// }`
 
 
