@@ -29,7 +29,6 @@ exports.createPages = ({ actions, graphql }) => {
                     return reject(result.errors)
                 }
                 result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-                    console.log('node', JSON.stringify(node, null, 2));
                     createPage({
                         path: node.fields.slug,
                         component: articleTemplate,

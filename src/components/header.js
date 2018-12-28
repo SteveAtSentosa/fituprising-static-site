@@ -1,9 +1,6 @@
-import PT from 'prop-types';
-import { Link } from 'gatsby';
-import { ce } from '../utils/render';
-import { makeStyles, s } from '../utils/style';
-import { makePropSpecs, applyPropSpecs } from '../utils/render';
-
+import PT from 'prop-types'
+import { ce, makeProps, applyProps, Link, Div } from '../utils/render'
+import { makeStyles, s } from '../utils/style'
 
 //*****************************************************************************
 // Interface
@@ -14,21 +11,19 @@ const pagesShape = PT.arrayOf(PT.shape({
   to: PT.string,
 }))
 
-const propSpecs = makePropSpecs([
-  [ 'title', PT.string,             ''  ], // underneath the logo
-  [ 'pages', pagesShape,            []  ], // list of page paths
-  [ 'path',  PT.string.isRequired,  '/' ], // path of the current page
-]);
+const propSpecs = makeProps([
+  [ 'title', PT.string, '' ], // underneath the logo
+  [ 'pages', pagesShape, [] ], // list of page paths
+  [ 'path', PT.string.isRequired, '/' ], // path of the current page
+])
 
 //*****************************************************************************
 // Component
 //*****************************************************************************
 
-const Header = ({ title, pages, path }) => {
+const HeaderComponent = applyProps(({ title, pages, path }) => {
 
-
-  const home = path === '/';
-  const titleLinkPath = '/' + path.split('/')[1];
+  const titleLinkPath = '/' + path.split('/')[1]
 
   const style = makeStyles({
     root: tw`font-mont mb-4  md:mb-12`,
@@ -36,62 +31,68 @@ const Header = ({ title, pages, path }) => {
     logo: tw`-mb-2 md:mb-2 text-lg md:text-base leading-none font-semibold`,
     title: tw`-ml-1 leading-normal md:leading-normal text-grey-400 text-3xl md:text-5xl`,
     nav: tw`mt-0`
-  });
+  })
 
-  return ce('div', style('root'),
-    ce('div', style('header'),
-      ce(Logo, { ...style('logo'), home }),
-      ce(Title, { ...style('title'), home, title, titleLinkPath })
-    ),
-    ce(Nav, { ...style('nav'), pages, path })
+  return (
+    Div(style('root'),
+      Div(style('header'),
+        Logo({ ...style('logo') }),
+        Title({ ...style('title'), title, titleLinkPath })
+      ),
+      Nav({ ...style('nav'), pages, path })
+    )
   )
-}
+}, propSpecs)
 
+export default HeaderComponent
+export const Header = (...args) => ce(HeaderComponent, ...args)
 
-export default applyPropSpecs(Header, propSpecs);
 
 //*****************************************************************************
 // Helpers
 //*****************************************************************************
 
-function Logo({ home, className }) {
-
+function Logo(...args) { return ce(LogoComponent, ...args) }
+function LogoComponent({ className }) {
   const style = makeStyles({
     root: className,
-    f: [ tw`text-fu-green`, s['no-underline']],
-    u: [ tw`text-fu-purple`, s['no-underline']],
+    f: [ tw`text-fu-green`, s['no-underline'] ],
+    u: [ tw`text-fu-purple`, s['no-underline'] ],
   })
 
-  return ce( 'div', style('root'),
-    ce(Link, { ...style('f'), to: '/' }, 'fit'),
-    ce(Link, { ...style('u'), to: '/' }, 'Uprising')
+  return Div(style('root'),
+    Link({ ...style('f'), to: '/' }, 'fit'),
+    Link({ ...style('u'), to: '/' }, 'Uprising')
   )
 }
 
-function Title({ home, title, titleLinkPath, className }) {
-
+function Title(...args) { return ce(TitleComponent, ...args) }
+function TitleComponent({ title, titleLinkPath, className }) {
   const style = makeStyles({
     title: [ s['no-underline'], className ],
   })
   return (
-    ce(Link, { ...style('title'), to: titleLinkPath }, title)
+    Link({ ...style('title'), to: titleLinkPath }, title)
   )
 }
 
+function Nav(...args) { return ce(NavComponent, ...args) }
+function NavComponent({ pages, path, className }) {
 
-function Nav({ pages, path, className }) {
-
-  const linkStyle = [ tw`text-base md:text-sm mr-6 md:mr-12 text-grey-400`, s['no-underline']];
-  const activeStyle = tw`text-black`;
+  const baseLinkStyle = [ tw`text-base md:text-sm mr-6 md:mr-12 text-grey-400`, s['no-underline'] ]
+  const activeStyle = tw`text-black`
   const style = makeStyles({
     root: [ tw`py-1 flex flex-col md:flex-row`, className ],
-    link: linkStyle,
-    activeLink: [ linkStyle, activeStyle ]
+    link: baseLinkStyle,
+    activeLink: [ baseLinkStyle, activeStyle ]
   })
 
-  const activePage = to => to === path;``
-  return ce( 'div', style('root'), pages.map( ({ to, text}, key) => {
-    const finalStyle = activePage(to) ? style('activeLink') : style('link');
-    return ce(Link, { ...finalStyle, key, to, }, text)
-  }));
+  const activePage = to => to === path
+  const linkStyle = to => activePage(to) ? 'activeLink' : 'link'
+  return (
+    Div(style('root'), pages.map(({ to, text }, key) =>
+      Link({ ...style(linkStyle(to)), key, to, }, text)
+    ))
+  )
 }
+

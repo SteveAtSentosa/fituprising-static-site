@@ -1,51 +1,49 @@
 import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
-import Image from 'gatsby-image'
+// import Image from 'gatsby-image'
+import { makeStyles } from '../utils/style'
+import { ce, Div, P, Strong, Image } from '../utils/render'
 
-import { rhythm } from '../utils/typography'
+const BioComponent = () => <StaticQuery query={query} render={render} />
 
-function Bio() {
-  return (
-    <StaticQuery
-      query={bioQuery}
-      render={data => {
-        const { author, social } = data.site.siteMetadata
-        return (
-          <div
-            style={{
-              display: 'flex',
-              marginBottom: rhythm(2.5),
-            }}
-          >
-            <Image
-              fixed={data.avatar.childImageSharp.fixed}
-              alt={author}
-              style={{
-                marginRight: rhythm(1 / 2),
-                marginBottom: 0,
-                minWidth: 50,
-                borderRadius: '100%',
-              }}
-            />
-            <p>
-              Written by <strong>{author}</strong> who lives and works in San
-              Francisco building useful things.{' '}
-              <a href={`https://twitter.com/${social.twitter}`}>
-                You should follow him on Twitter
-              </a>
-            </p>
-          </div>
-        )
-      }}
-    />
+export default BioComponent
+export const Bio = (...args) => ce(BioComponent, ...args)
+
+//*****************************************************************************
+// Component
+//*****************************************************************************
+
+
+function render(data) {
+
+  const style = makeStyles({
+    root: tw`flex mb-4 mt-10 md:mt-6`,
+    image: [ tw`mr-4 mb-0 mt-2 md:mt-1 rounded-full`, { minWidth: 75 } ],
+    blurb: tw`text-base`,
+  })
+
+  const { author } = data.site.siteMetadata
+  const fixed = data.avatar.childImageSharp.fixed
+
+  return Div(style('root'),
+    Image({ ...style('image'), fixed, alt: author }),
+    P(style('blurb'),
+      `Greetings.  My name is `, Strong(0, 'Steve Saunders. '),
+      `I've been thinking about and applying the psychology of weight loss for years.
+       These writings capture some of those thoughts.`
+    )
   )
 }
 
-const bioQuery = graphql`
+//*****************************************************************************
+// Query
+//*****************************************************************************
+
+const query = graphql`
   query BioQuery {
     avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
       childImageSharp {
-        fixed(width: 50, height: 50) {
+        fixed(width: 75, height: 75) {
           ...GatsbyImageSharpFixed
         }
       }
@@ -60,5 +58,3 @@ const bioQuery = graphql`
     }
   }
 `
-
-export default Bio
