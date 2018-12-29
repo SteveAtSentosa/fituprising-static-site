@@ -2,10 +2,10 @@ module.exports = {
   siteMetadata: {
     title: 'Fit Uprising',
     author: 'Steven Saunders',
-    description: 'A starter blog demonstrating what Gatsby can do.',
-    siteUrl: 'https://github.com/SteveAtSentosa/fitup',
+    description: 'Be Different.',
+    siteUrl: 'www.fituprising.com',
     social: {
-      twitter: 'kylemathews',
+      twitter: 'Steven_Saunders',
     },
   },
   plugins: [
@@ -63,7 +63,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `content/assets/fu-icon.png`,
       },
     },
     `gatsby-plugin-offline`,
