@@ -4,9 +4,9 @@ import { makeStyles } from '../utils/style'
 import { Header } from './header'
 
 const pages = [
-  { to: '/', text: 'Home' },
-  { to: '/explore', text: 'Explore Your Mind' },
-  { to: '/gospel', text: 'Fit Uprising Gospel' },
+  { to: '/blog', text: 'Blog' },
+  { to: '/book', text: 'The Book' },
+  { to: '/watch', text: 'Watch Steve Lose' },
 ]
 
 const LayoutComponent = props => {
@@ -15,11 +15,16 @@ const LayoutComponent = props => {
   const path = location.pathname
 
   const globalStyles = css`
-    h3 { font-size: 1.125rem !important; color #673ab7 !important;}
+    h3 {
+      font-size: 1.125rem !important;
+      color #673ab7 !important;
+      margin-top: 16px !important;
+      margin-bottom: 8px !important;
+    }
   `
 
   const style = makeStyles({
-    root: [ tw`px-8 py-10 md:px-32 `, { maxWidth: 800 } ]
+    root: [ tw`px-8 py-10 md:px-32 `, { maxWidth: 850 } ]
   })
 
   return (

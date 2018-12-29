@@ -87,6 +87,7 @@ function NavComponent({ pages, path, className }) {
     activeLink: [ baseLinkStyle, activeStyle ]
   })
 
+  // const activePage = to => !!path.match(`${to}`)
   const activePage = to => to === path
   const linkStyle = to => activePage(to) ? 'activeLink' : 'link'
   return (

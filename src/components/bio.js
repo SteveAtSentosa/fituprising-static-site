@@ -1,6 +1,5 @@
 import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
-// import Image from 'gatsby-image'
 import { makeStyles } from '../utils/style'
 import { ce, Div, P, Strong, Image } from '../utils/render'
 
@@ -12,7 +11,6 @@ export const Bio = (...args) => ce(BioComponent, ...args)
 //*****************************************************************************
 // Component
 //*****************************************************************************
-
 
 function render(data) {
 

@@ -4,7 +4,11 @@ import { Div, innerHtml } from '../utils/render'
 import { makeStyles } from '../utils/style'
 import { Layout } from '../components/layout'
 
-const Article = ({ data }) => {
+//*****************************************************************************
+// Component
+//*****************************************************************************
+
+const Article = ({ location, data }) => {
   const fallback = { html: '<p>Hmmm, something went wrong... </p>', frontmatter: {} }
   const article = propOr(fallback, 'markdownRemark', data)
   const style = makeStyles({
@@ -14,7 +18,7 @@ const Article = ({ data }) => {
   })
 
   return (
-    Layout({ location, title: 'Explore Your Mind' },
+    Layout({ location, title: 'The Blog' },
       Div(style('root'),
         Div(style('title'), article.frontmatter.title),
         Div(style('summary'), article.frontmatter.summary),
@@ -25,8 +29,12 @@ const Article = ({ data }) => {
 
 export default Article
 
+//*****************************************************************************
+// Query
+//*****************************************************************************
+
 export const pageQuery = graphql`
-  query ArticleQuery( $slug: String!) {
+  query PostQuery( $slug: String!) {
     markdownRemark (fields: { slug: { eq:$slug }}) {
       html
       frontmatter {

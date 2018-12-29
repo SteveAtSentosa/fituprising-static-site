@@ -1,6 +1,6 @@
 ---
 title: Stop The Bleeding
-date: "2018-12-27"
+date: "2018-12-28"
 summary: My whole life I have fallen into the same trap.  Everything that I do has to be big and has to be perfect.  That sounds like a good thing, right?  Well, it has certainly led to many interesting experiences and outcomes.  But as I get older, and as my capacity for work and stress begins to wane, and as my goals and outlook change, it has become a problem.
 ---
 
