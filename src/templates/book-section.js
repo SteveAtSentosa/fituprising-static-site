@@ -1,9 +1,10 @@
 import { graphql } from 'gatsby'
 import { propOr } from 'ramda'
 import { Div, innerHtml } from '../utils/render'
-import { makeStyles } from '../utils/style'
+import { makeStyles, s } from '../utils/style'
 import { Layout } from '../components/layout'
 import { Toc } from '../components/book-toc'
+import { SectionTitle } from '../components/section-title'
 
 //*****************************************************************************
 // Component
@@ -15,15 +16,13 @@ const BookSection = ({ location, data, pageContext }) => {
   const bookSection = propOr(fallback, 'markdownRemark', data)
   const style = makeStyles({
     root: tw`mt-8 md:mt-16`,
-    toc: tw`mt-6 md:-mt-4 md:-mb-6`,
-    title: tw`mb-8 text-2xl leading-tight font-semibold text-black`,
   })
 
   return (
     Layout({ location, title: 'The Book' },
-      Toc({ ...style('toc'), sections }),
+      Toc({ sections }),
       Div(style('root'),
-        Div(style('title'), bookSection.frontmatter.title),
+        SectionTitle(0, bookSection.frontmatter.title),
         Div(innerHtml(bookSection.html))
       )
     ))

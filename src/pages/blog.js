@@ -2,7 +2,6 @@ import { graphql } from 'gatsby'
 import { pathOr } from 'ramda'
 import { Layout } from '../components/layout'
 import { Posts } from '../components/posts'
-import { Bio } from '../components/bio'
 
 //*****************************************************************************
 // Component
@@ -20,7 +19,6 @@ const Blog = ({ data, location }) => {
 
   return (
     Layout({ location, title: 'The Blog' },
-      Bio(),
       Posts({ articles })
     ))
 }

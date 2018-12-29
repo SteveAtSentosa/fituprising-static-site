@@ -22,16 +22,18 @@ module.exports = {
     'comma-dangle': 0,
     'space-before-function-paren': 0,
     'no-multiple-empty-lines': 0,
+    'operator-linebreak': 0,
+    'indent': ['error', 2, { 'flatTernaryExpressions': true, 'ignoredNodes': ['ConditionalExpression'] }],
   }
 }
 
 
 // {
-//   "extends": "standard",
-//   "rules": {
-//       "brace-style": ["error", "stroustrup"]
+//   'extends': 'standard',
+//   'rules': {
+//       'brace-style': ['error', 'stroustrup']
 //   },
-//   "env": {
-//       "mocha": true
+//   'env': {
+//       'mocha': true
 //   }
 // }

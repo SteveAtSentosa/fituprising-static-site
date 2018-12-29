@@ -35,7 +35,6 @@ export const GlobalStyles = (...args) => ce(Global, ...args)
 
 export const Componentify = (component, ...rest) => ce(component, ...rest)
 
-
 // create inner HTML render property
 export const innerHtml = html => ({ dangerouslySetInnerHTML: { __html: html } })
 

@@ -2,9 +2,8 @@ import path from 'path'
 import { createFilePath } from 'gatsby-source-filesystem'
 import { pathOr, curry } from 'ramda'
 
-const createPageFromNode = curry((createPageFn, node, template, context = {}) => {
-
-  return createPageFn({
+const createPageFromNode = curry((createPageFn, node, template, context = {}) =>
+  createPageFn({
     path: node.fields.slug,
     component: template,
     context: {
@@ -12,7 +11,7 @@ const createPageFromNode = curry((createPageFn, node, template, context = {}) =>
       ...context
     },
   })
-})
+)
 
 const bookSectionFromNode = node => ({
   title: pathOr('', ['frontmatter', 'title'], node),
@@ -23,13 +22,6 @@ export const createPages = ({ actions, graphql }) => {
   const { createPage, createRedirect } = actions
   const blogPostTemplate = path.resolve(`src/templates/blog-post.js`)
   const bookSectionTemplate = path.resolve(`src/templates/book-section.js`)
-
-  createRedirect({
-    fromPath: `/`,
-    isPermanent: true,
-    redirectInBrowser: true,
-    toPath: `/blog/`,
-  })
 
   const newPage = createPageFromNode(createPage)
   return new Promise((resolve, reject) => {

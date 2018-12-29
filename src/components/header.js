@@ -1,6 +1,6 @@
 import PT from 'prop-types'
 import { ce, makeProps, applyProps, Link, Div } from '../utils/render'
-import { makeStyles, s } from '../utils/style'
+import { makeStyles, css } from '../utils/style'
 
 //*****************************************************************************
 // Interface
@@ -56,8 +56,8 @@ function Logo(...args) { return ce(LogoComponent, ...args) }
 function LogoComponent({ className }) {
   const style = makeStyles({
     root: className,
-    f: [ tw`text-fu-green`, s['no-underline'] ],
-    u: [ tw`text-fu-purple`, s['no-underline'] ],
+    f: [ tw`text-fu-green `, '$no-underline' ],
+    u: [ tw`text-fu-purple`, '$no-underline' ],
   })
 
   return Div(style('root'),
@@ -68,18 +68,15 @@ function LogoComponent({ className }) {
 
 function Title(...args) { return ce(TitleComponent, ...args) }
 function TitleComponent({ title, titleLinkPath, className }) {
-  const style = makeStyles({
-    title: [ s['no-underline'], className ],
-  })
   return (
-    Link({ ...style('title'), to: titleLinkPath }, title)
+    Link({ ...css([ '$no-underline', className ]), to: titleLinkPath }, title)
   )
 }
 
 function Nav(...args) { return ce(NavComponent, ...args) }
 function NavComponent({ pages, path, className }) {
 
-  const baseLinkStyle = [ tw`text-base md:text-sm mr-6 md:mr-12 text-grey-400`, s['no-underline'] ]
+  const baseLinkStyle = [ tw`text-base md:text-sm mr-6 md:mr-12 text-grey-400`, '$no-underline' ]
   const activeStyle = tw`text-black`
   const style = makeStyles({
     root: [ tw`py-1 flex flex-col md:flex-row`, className ],

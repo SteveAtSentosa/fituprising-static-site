@@ -1,7 +1,7 @@
 // import { Link } from 'gatsby'
 import PT from 'prop-types'
 import { ce, makeProps, applyProps, Div, Span, Link } from '../utils/render'
-import { makeStyles, s } from '../utils/style'
+import { makeStyles } from '../utils/style'
 
 //*****************************************************************************
 // Interface
@@ -28,9 +28,9 @@ const PostsComponent = applyProps(({ articles, className }) => {
     root: [ tw``, className ],
     summary: tw`mb-12`,
     date: tw`text-xs font-light text-grey-400`,
-    title: [ tw`text-lg font-semibold text-fu-purple leading-tight`, s['no-underline'] ],
+    title: [ tw`text-lg font-semibold text-fu-purple leading-tight`, '$no-underline' ],
     teaser: tw`text-base md:text-sm text-grey-500 font-thin`,
-    more: [ tw`text-red text-xs pl-2`, s['no-underline'] ]
+    more: [ tw`text-red text-xs pl-2`, '$no-underline' ]
   })
 
   return (
