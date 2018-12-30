@@ -15,12 +15,12 @@ const addComponentPropSpec = (toThisSpec, propName, propType, propDefault) => ({
   defaultProps: { ...(toThisSpec.defaultProps || {}), [propName]: propDefault },
 });
 
-export const makeProps = propSpecs =>
-  propSpecs.reduce((acc, propSpec) => addComponentPropSpec(acc, ...propSpec), {})
+export const makePropSpec = propSpec =>
+  propSpec.reduce((acc, propSpec) => addComponentPropSpec(acc, ...propSpec), {})
 
-export const applyProps = (component, propSpecs) => {
-  component.propTypes = propSpecs.propTypes
-  component.defaultProps = propSpecs.defaultProps
+export const applyProps = (component, propSpec) => {
+  component.propTypes = propSpec.propTypes
+  component.defaultProps = propSpec.defaultProps
   return component
 }
 
@@ -33,7 +33,10 @@ export const Link = (...args) => ce(GatsbyLink, ...args)
 export const Image = (...args) => ce(GatsbyImage, ...args)
 export const GlobalStyles = (...args) => ce(Global, ...args)
 
-export const Componentify = (component, ...rest) => ce(component, ...rest)
+export const componentify = (component, propSpec) => (...args) => propSpec ?
+  ce(applyProps(component, propSpec), ...args) :
+  ce(component, ...args)
+
 
 // create inner HTML render property
 export const innerHtml = html => ({ dangerouslySetInnerHTML: { __html: html } })

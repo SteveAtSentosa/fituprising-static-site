@@ -1,5 +1,5 @@
 import PT from 'prop-types'
-import { ce, makeProps, applyProps, Link, Div } from '../utils/render'
+import { ce, componentify, makePropSpec, Link, Div } from '../utils/render'
 import { makeStyles, css } from '../utils/style'
 
 //*****************************************************************************
@@ -11,7 +11,7 @@ const pagesShape = PT.arrayOf(PT.shape({
   to: PT.string,
 }))
 
-const propSpecs = makeProps([
+const propSpec = makePropSpec([
   [ 'title', PT.string, '' ], // underneath the logo
   [ 'pages', pagesShape, [] ], // list of page paths
   [ 'path', PT.string.isRequired, '/' ], // path of the current page
@@ -21,7 +21,7 @@ const propSpecs = makeProps([
 // Component
 //*****************************************************************************
 
-const HeaderComponent = applyProps(({ title, pages, path }) => {
+const HeaderComponent = ({ title, pages, path }) => {
 
   const titleLinkPath = '/' + path.split('/')[1]
 
@@ -42,11 +42,9 @@ const HeaderComponent = applyProps(({ title, pages, path }) => {
       Nav({ ...style('nav'), pages, path })
     )
   )
-}, propSpecs)
+}
 
-export default HeaderComponent
-export const Header = (...args) => ce(HeaderComponent, ...args)
-
+export const Header = componentify(HeaderComponent, propSpec)
 
 //*****************************************************************************
 // Helpers

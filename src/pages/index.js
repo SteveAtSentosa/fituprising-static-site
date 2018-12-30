@@ -3,9 +3,10 @@ import { pathOr } from 'ramda'
 import { Layout } from '../components/layout'
 import { Posts } from '../components/posts'
 import { Bio } from '../components/bio'
+import { BeforeAfter } from '../components/before-after'
 import { SectionTitle } from '../components/section-title'
 import { InfoBox, InfoParagraph } from '../components/info-box'
-import { css } from '../utils/style'
+import { makeStyles, css } from '../utils/style'
 
 
 //*****************************************************************************
@@ -22,14 +23,21 @@ const Index = ({ data, location }) => {
     path: pathOr('', ['fields', 'slug'], node),
   }))
 
+  const style = makeStyles({
+    beforeAfter: tw`mb-6`,
+    blurb: tw`my-8`,
+  })
+
+
   return (
     Layout({ location, title: 'Be Different' },
       Bio(),
-      InfoBox(css(tw`mb-8`), InfoParagraph(0, `
-        Weight loss is hard, very hard.  We all know what to do, right? Eat less, move more.
-        So, what's the problem? I believe that it is all about what is happening in the mind.
-        It’s a tough problem, I hope that you will join me  I try to solve it.`)),
-      SectionTitle(0, 'Most Recent Blg Posts'),
+      InfoBox(style('blurb'), InfoParagraph(0, `
+        Weight loss is hard.  We all know what to do, eat less, move more.
+        So, why are so many of us overweight? I believe that it is all about what is happening in the mind.
+        It’s a tough problem, I hope that you will join me as I work on solving it.`)),
+      BeforeAfter(style('beforeAfter')),
+      SectionTitle(0, 'Most Recent Blog Posts'),
       Posts({ articles })
     ))
 }

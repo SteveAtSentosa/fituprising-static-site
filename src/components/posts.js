@@ -1,6 +1,6 @@
 // import { Link } from 'gatsby'
 import PT from 'prop-types'
-import { ce, makeProps, applyProps, Div, Span, Link } from '../utils/render'
+import { componentify, makePropSpec, Div, Span, Link } from '../utils/render'
 import { makeStyles } from '../utils/style'
 
 //*****************************************************************************
@@ -14,7 +14,7 @@ const articlesShape = PT.arrayOf(PT.shape({
   summary: PT.string,
 }))
 
-const propSpecs = makeProps([
+const propSpec = makePropSpec([
   [ 'articles', articlesShape, [] ], // list of articles to display
 ])
 
@@ -22,7 +22,7 @@ const propSpecs = makeProps([
 // Component
 //*****************************************************************************
 
-const PostsComponent = applyProps(({ articles, className }) => {
+const PostsComponent = ({ articles, className }) => {
 
   const style = makeStyles({
     root: [ tw``, className ],
@@ -45,7 +45,7 @@ const PostsComponent = applyProps(({ articles, className }) => {
       ))
     )
   )
-}, propSpecs)
+}
 
 export default PostsComponent
-export const Posts = (...args) => ce(PostsComponent, ...args)
+export const Posts = componentify(PostsComponent, propSpec)

@@ -1,7 +1,8 @@
 import { graphql } from 'gatsby'
 import { pathOr } from 'ramda'
 import { Layout } from '../components/layout'
-import { Toc } from '../components/book-toc'
+import { Toc } from '../components/toc'
+import { css } from '../utils/style'
 
 //*****************************************************************************
 // Component
@@ -17,7 +18,7 @@ const BookComponent = ({ data, location }) => {
 
   return (
     Layout({ location, title: 'The Book' },
-      Toc({ sections })
+      Toc({ ...css(tw`mt-32`), sections, trailingNote: 'Work in progress, more to come ...' })
     ))
 }
 
