@@ -24,7 +24,7 @@ const PhotoComponent = ({ image, label, subLabel, date, className }) => {
 
   const style = makeStyles({
     root: className,
-    header: tw`font-mont flex justify-between items-end`,
+    header: tw`font-mont flex justify-between items-center`,
     frame: tw`flex shadow-lg`,
     image: tw`m-3 rounded-lg`,
   })
