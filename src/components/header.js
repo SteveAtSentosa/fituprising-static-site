@@ -1,6 +1,7 @@
 import PT from 'prop-types'
 import { ce, componentify, makePropSpec, Link, Div } from '../utils/render'
 import { makeStyles, css } from '../utils/style'
+import { Bio } from '../components/bio'
 
 //*****************************************************************************
 // Interface
@@ -28,9 +29,9 @@ const HeaderComponent = ({ title, pages, path }) => {
   const style = makeStyles({
     root: tw`font-mont mb-4  md:mb-12`,
     header: tw`h-16 md:h-20`,
-    logo: tw`-mb-2 md:mb-2 text-lg md:text-base leading-none font-semibold`,
-    title: tw`-ml-1 leading-normal md:leading-normal text-grey-400 text-3xl md:text-5xl`,
-    nav: tw`mt-0`
+    logo: tw`-mb-2 text-4xl leading-tight font-semibold`,
+    title: tw`text-grey-400 text-lg `,
+    nav: tw`mt-4 md:-mt-2 mb-8`
   })
 
   return (
@@ -39,7 +40,8 @@ const HeaderComponent = ({ title, pages, path }) => {
         Logo({ ...style('logo') }),
         Title({ ...style('title'), title, titleLinkPath })
       ),
-      Nav({ ...style('nav'), pages, path })
+      Nav({ ...style('nav'), pages, path }),
+      Bio()
     )
   )
 }
@@ -82,8 +84,8 @@ function NavComponent({ pages, path, className }) {
     activeLink: [ baseLinkStyle, activeStyle ]
   })
 
-  // const activePage = to => !!path.match(`${to}`)
-  const activePage = to => to === path
+  const activePage = to => !!path.match(`${to}`)
+  /// const activePage = to => to === path
   const linkStyle = to => activePage(to) ? 'activeLink' : 'link'
   return (
     Div(style('root'), pages.map(({ to, text }, key) =>

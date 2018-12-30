@@ -23,6 +23,14 @@ export const createPages = ({ actions, graphql }) => {
   const blogPostTemplate = path.resolve(`src/templates/blog-post.js`)
   const bookSectionTemplate = path.resolve(`src/templates/book-section.js`)
 
+  createRedirect({
+    fromPath: `/`,
+    isPermanent: true,
+    redirectInBrowser: true,
+    toPath: '/home',
+  })
+
+
   const newPage = createPageFromNode(createPage)
   return new Promise((resolve, reject) => {
     resolve(

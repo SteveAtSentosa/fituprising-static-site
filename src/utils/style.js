@@ -18,9 +18,10 @@ export const makeStyles = stylesObject => style => css(stylesObject[style])
 // composed styles
 export const s = {
   'no-underline': tw`no-underline shadow-none`,
+  'border': tw`border-solid border-grey-300 border rounded`,
   'h-borders': tw`border-solid border-grey border-b border-t border-l-0 border-r-0`,
   'section-title': tw`mb-8 text-2xl leading-tight font-semibold text-black`,
   'info-box-container': tw`bg-grey-200 rounded-lg px-4 py-4`,
-  'info-box-list-entry': tw`font-mont text-fu-purple md:text-sm no-underline shadow-none`,
+  'info-box-list-entry': tw`font-mont text-fu-purple md:text-sm`,
   'info-box-paragraph': tw`pb-3 font-mont text-fu-purple md:text-sm`,
 }

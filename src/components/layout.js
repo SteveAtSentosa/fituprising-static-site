@@ -4,7 +4,7 @@ import { makeStyles } from '../utils/style'
 import { Header } from './header'
 
 const pages = [
-  { to: '/', text: 'Home' },
+  { to: '/home', text: 'Home' },
   { to: '/blog', text: 'Blog' },
   { to: '/book', text: 'The Book' },
   { to: '/watch', text: 'Watch Steve Lose' },
