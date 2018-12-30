@@ -31,10 +31,11 @@ const PhotoComponent = ({ image, label, subLabel, date, className }) => {
 
   return (
     Div(style('root'),
+      Div(style('frame'), Image({ ...style('image'), ...image })),
       Div(style('header'),
         Label({ label, subLabel }),
         DateStamp({ date })),
-      Div(style('frame'), Image({ ...style('image'), ...image }))
+
     )
   )
 }
