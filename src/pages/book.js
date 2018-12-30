@@ -1,28 +1,53 @@
 import { graphql } from 'gatsby'
-import { pathOr } from 'ramda'
+import { pathOr, propOr } from 'ramda'
+import withState from 'recompose/withState'
 import { Layout } from '../components/layout'
 import { Toc } from '../components/toc'
-import { css } from '../utils/style'
+import { makeStyles } from '../utils/style'
+import { BookSection } from '../components/book-section'
 
 //*****************************************************************************
 // Component
 //*****************************************************************************
 
-const BookComponent = ({ data, location }) => {
+export default withState(
+  'activeSectionIdx', 'setActiveSectionIdx', 0)(BookComponent)
+
+function BookComponent(props) {
+
+  const { data, location } = props
+  const { activeSectionIdx, setActiveSectionIdx } = props
 
   const edges = pathOr([], [ 'allMarkdownRemark', 'edges' ], data)
   const sections = edges.map(({ node }) => ({
     title: pathOr('', ['frontmatter', 'title'], node),
-    path: pathOr('', ['fields', 'slug'], node),
+    html: propOr('', 'html', node),
   }))
+
+  const activeSection = sections[activeSectionIdx]
+  const onEntryClick = ({ idx }) => setActiveSectionIdx(idx)
+
+  const style = makeStyles({
+    toc: tw`mt-8 mb-12`,
+    text: [ tw`overflow-scroll p-4 `, '$border', { height: 600 } ],
+  })
 
   return (
     Layout({ location, title: 'The Book' },
-      Toc({ ...css(tw`mt-32`), sections, trailingNote: 'Work in progress, more to come ...' })
+      Toc({
+        ...style('toc'),
+        sections,
+        activeSectionIdx,
+        onEntryClick,
+        trailingNote: 'This is a work in progress, please keep checking back' }
+      ),
+      BookSection({
+        title: activeSection.title,
+        html: activeSection.html,
+      })
     ))
 }
 
-export default BookComponent
 
 //*****************************************************************************
 // Query
@@ -37,6 +62,7 @@ export const pageQuery = graphql`
   ) {
     edges {
       node {
+        html
         frontmatter {
           title
           date

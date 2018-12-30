@@ -13,15 +13,15 @@ const createPageFromNode = curry((createPageFn, node, template, context = {}) =>
   })
 )
 
-const bookSectionFromNode = node => ({
-  title: pathOr('', ['frontmatter', 'title'], node),
-  path: pathOr('', ['fields', 'slug'], node)
-})
+// const bookSectionFromNode = node => ({
+//   title: pathOr('', ['frontmatter', 'title'], node),
+//   path: pathOr('', ['fields', 'slug'], node)
+// })
 
 export const createPages = ({ actions, graphql }) => {
   const { createPage, createRedirect } = actions
-  const blogPostTemplate = path.resolve(`src/templates/blog-post.js`)
-  const bookSectionTemplate = path.resolve(`src/templates/book-section.js`)
+  const blogPostTemplate = path.resolve(`src/templates/blog-post-template.js`)
+  // const bookSectionTemplate = path.resolve(`src/templates/book-section-template.js`)
 
   createRedirect({
     fromPath: `/`,
@@ -41,18 +41,18 @@ export const createPages = ({ actions, graphql }) => {
         const blogPosts = pathOr([], ['data', 'blogPosts', 'edges'], result)
         blogPosts.forEach(({ node }) => newPage(node, blogPostTemplate))
 
-        const bookSections = pathOr([], ['data', 'bookSections', 'edges'], result)
-        bookSections.forEach(({ node }) => newPage(node, bookSectionTemplate, {
-          sections: bookSections.map(({ node }) => bookSectionFromNode(node))
-        }))
+        // const bookSections = pathOr([], ['data', 'bookSections', 'edges'], result)
+        // bookSections.forEach(({ node }) => newPage(node, bookSectionTemplate, {
+        //   sections: bookSections.map(({ node }) => bookSectionFromNode(node))
+        // }))
 
-        const firstSection = bookSectionFromNode(bookSections[0].node)
-        createRedirect({
-          fromPath: `/book`,
-          isPermanent: true,
-          redirectInBrowser: true,
-          toPath: firstSection.path,
-        })
+        // const firstSection = bookSectionFromNode(bookSections[0].node)
+        // createRedirect({
+        //   fromPath: `/book`,
+        //   isPermanent: true,
+        //   redirectInBrowser: true,
+        //   toPath: firstSection.path,
+        // })
       })
     )
   })
