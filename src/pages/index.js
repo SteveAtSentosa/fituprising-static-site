@@ -24,8 +24,8 @@ const Index = ({ data, location }) => {
   }))
 
   const style = makeStyles({
-    beforeAfter: tw`mb-6`,
-    blurb: tw`my-8`,
+    beforeAfter: tw`mb-12`,
+    blurb: tw`mt-12`,
   })
 
 
