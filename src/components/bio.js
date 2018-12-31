@@ -9,7 +9,6 @@ import { componentify, makePropSpec, Div, P, Strong, Image } from '../utils/rend
 // Interface
 //*****************************************************************************
 
-// TODO: defult props not being applied as I expect ... figure thes one out at some point
 const propSpec = makePropSpec([
   [ 'headshot', PT.bool, true ], // show the head shot?
 ])

@@ -4,6 +4,7 @@ import withState from 'recompose/withState'
 import { Layout } from '../components/layout'
 import { Toc } from '../components/toc'
 import { makeStyles } from '../utils/style'
+import { Div } from '../utils/render'
 import { BookSection } from '../components/book-section'
 
 //*****************************************************************************
@@ -28,19 +29,21 @@ function BookComponent(props) {
   const onEntryClick = ({ idx }) => setActiveSectionIdx(idx)
 
   const style = makeStyles({
-    toc: tw`mt-8 mb-12`,
+    header: tw`font-mont text-4xl text-grey-400 leading-tight`,
+    toc: tw`mt-2 mb-12`,
     text: [ tw`overflow-scroll p-4 `, '$border', { height: 600 } ],
   })
 
   return (
     Layout({ location, title: 'The Book' },
+      Div(style('header'), 'Fit Uprising - Be Different'),
       Toc({
         ...style('toc'),
         sections,
         activeSectionIdx,
         onEntryClick,
-        trailingNote: 'This is a work in progress, please keep checking back' }
-      ),
+        trailingNote: `This is a work in progress, check back every now and then.`
+      }),
       BookSection({
         title: activeSection.title,
         html: activeSection.html,

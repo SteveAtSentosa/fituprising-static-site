@@ -13,7 +13,6 @@ const propSpec = makePropSpec([
   [ 'label', PT.string, '' ], // label for the photo
   [ 'subLabel', PT.string, '' ], // label for the photo
   [ 'className', PT.string, '' ], // css class to apply to the root
-
 ])
 
 //*****************************************************************************

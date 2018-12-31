@@ -15,11 +15,6 @@ const InfoListEntryComponent = props => {
 }
 export const InfoListEntry = componentify(InfoListEntryComponent)
 
-// export const InfoListEntry = componentify(({ linkTo, onClick, children, className }) => linkTo ?
-//   Div(0, Link({ ...css(['$info-box-list-entry', className]), to: linkTo }, children)) :
-//   Div({ ...css([ '$info-box-list-entry', className ], onClick) }, children)
-// )
-
 export const InfoParagraph = componentify(({ last = true, children, className }) =>
   Div(css([ '$info-box-paragraph', last && tw`pb-0`, className ]), children)
 )

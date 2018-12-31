@@ -1,4 +1,4 @@
-import { ce, Div, GlobalStyles } from '../utils/render'
+import { componentify, Div, GlobalStyles } from '../utils/render'
 import { css } from '@emotion/core'
 import { makeStyles } from '../utils/style'
 import { Header } from './header'
@@ -38,4 +38,4 @@ const LayoutComponent = props => {
 }
 
 export default LayoutComponent
-export const Layout = (...args) => ce(LayoutComponent, ...args)
+export const Layout = componentify(LayoutComponent)

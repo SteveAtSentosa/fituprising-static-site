@@ -9,13 +9,13 @@ import { makeStyles, css } from '../utils/style'
 // Interface
 //*****************************************************************************
 
-const sectionShape = PT.arrayOf(PT.shape({
+const entryShape = PT.arrayOf(PT.shape({
   title: PT.string.isRequired,
   path: PT.string // if provided, toc entry will be a link to this path
 }))
 
 const propSpec = makePropSpec([
-  [ 'sections', sectionShape, [] ], // list of sections to display
+  [ 'sections', entryShape, [] ], // list of sections to display
   [ 'activeSectionPath', PT.string ], // active section path
   [ 'activeSectionIdx', PT.number ], // active section index
   [ 'onEntryClick', PT.func ], // if entry clicked, calls onClick({idx, path})
@@ -35,6 +35,7 @@ const TocComponent = props => {
   const style = makeStyles({
     root: className,
     label: tw`text-sm font-treb font-semibold`,
+    // sectionTitle: [ tw`py-1 md:py-0 hover:underline`, isActive => tw`hover:no-underline text-black` ],
     leadingNote: tw`text-sm leading-tight pb-2 md:pb-1 text-grey-400 `,
     trailingNote: tw`text-sm leading-tight pt-4 md:pt-2 text-grey-400`,
   })
@@ -47,13 +48,19 @@ const TocComponent = props => {
     Div(style('label'), 'Table Of Contents'),
     InfoBox(0, [
       leadingNote && InfoListEntry({ ...style('leadingNote'), key: 'leadingNote' }, leadingNote),
+
       sections.map((section, idx) => InfoListEntry({
         key: idx,
         onClick: () => onEntryClick({ idx, path: section.path }),
         linkTo: section.path,
-        ...css(sectionIsActive(section, idx) && [ tw`text-black`, '$no-underline' ]),
+        // ...style('sectionTitle', sectionIsActive(section, idx))
+        ...css([
+          tw`py-1 md:py-0 hover:underline cursor-pointer`,
+          sectionIsActive(section, idx) && tw`hover:no-underline text-black cursor-default`
+        ])
       },
       section.title)),
+
       trailingNote && InfoListEntry({ ...style('trailingNote'), key: 'trailingNote' }, trailingNote),
     ])
   )

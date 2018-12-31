@@ -26,7 +26,7 @@ const PostsComponent = ({ articles, className }) => {
 
   const style = makeStyles({
     root: [ tw``, className ],
-    summary: tw`mb-12`,
+    blogEntry: tw`mb-12`,
     date: tw`text-xs font-light text-grey-400`,
     title: [ tw`text-lg font-semibold text-fu-purple leading-tight`, '$no-underline' ],
     teaser: tw`text-base md:text-sm text-grey-500 font-thin`,
@@ -35,7 +35,7 @@ const PostsComponent = ({ articles, className }) => {
 
   return (
     Div(style('root'), articles.map((article, key) =>
-      Div({ ...style('summary'), key },
+      Div({ ...style('blogEntry'), key },
         Div(style('date'), article.date),
         Link({ ...style('title'), to: article.path }, article.title),
         Div(0,
