@@ -12,6 +12,7 @@ const articlesShape = PT.arrayOf(PT.shape({
   path: PT.string.isRequired,
   date: PT.string,
   summary: PT.string,
+  note: PT.string
 }))
 
 const propSpec = makePropSpec([
@@ -23,6 +24,8 @@ const propSpec = makePropSpec([
 //*****************************************************************************
 
 const PostsComponent = ({ articles, className }) => {
+
+  console.log('articles: ', articles)
 
   const style = makeStyles({
     root: [ tw``, className ],

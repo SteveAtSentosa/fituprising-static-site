@@ -15,6 +15,7 @@ const Blog = ({ data, location }) => {
     title: pathOr('', ['frontmatter', 'title'], node),
     date: pathOr('', ['frontmatter', 'date'], node),
     summary: pathOr('', ['frontmatter', 'summary'], node),
+    note: pathOr('', ['frontmatter', 'summary'], node),
     path: pathOr('', ['fields', 'slug'], node),
   }))
 

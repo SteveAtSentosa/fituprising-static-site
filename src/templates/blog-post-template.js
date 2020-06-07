@@ -15,6 +15,7 @@ const Article = ({ location, data }) => {
     root: tw`mt-8 md:mt-16`,
     title: tw`text-lg font-semibold text-fu-purple`,
     summary: tw`mt-1 mb-4 text-base md:text-sm text-grey-500 font-thin`,
+    note: tw`mt-1 mb-8 text-base md:text-xs text-grey-700 font-thin italic`,
   })
 
   return (
@@ -22,6 +23,7 @@ const Article = ({ location, data }) => {
       Div(style('root'),
         Div(style('title'), article.frontmatter.title),
         Div(style('summary'), article.frontmatter.summary),
+        Div(style('note'), article.frontmatter.note),
         Div(innerHtml(article.html))
       )
     ))
@@ -41,6 +43,7 @@ export const pageQuery = graphql`
         title
         date
         summary
+        note
       }
     }
   }
