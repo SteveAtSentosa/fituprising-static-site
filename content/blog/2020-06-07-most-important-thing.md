@@ -1,6 +1,6 @@
 ---
-title: This Has To Be The Most Imporant Thing
-date: "2019-06-07"
+title: This Has To Be The Most Important Thing
+date: "2020-06-07"
 summary: "Make no mistake, weight loss is an extraordinary challenge.  Never underestimate the vigilance required to lose weight and to keep it off.  It is not impossible obviously, and it can be done in a way that is rewarding. But remember this: if you don’t make weight loss your most important thing, you won’t succeed."
 note: "Note: my blog posts take the form of me having a conversation with myself.  I have found that if I am writing for myself rather than others is most effective"
 ---
@@ -15,4 +15,4 @@ Let's start by working on keeping this foremost in your mind, and let everything
 
 ### Upcoming Posts
 * An honest exploration: why weight loss (well health really) should be my most important thing
-* Specific actions to take to help make my health authentically my important thing
+* Specific actions to take to help make my health authentically my most important thing
