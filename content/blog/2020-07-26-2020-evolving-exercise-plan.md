@@ -46,7 +46,7 @@ that I crash, based on the following principles
 
   OK, that all said, here it is
 
-  ![](../assets/2020-excersize-plan-as-of-july-26.png )
+  ![](../assets/2020-excersize-plan-as-of-july-26.png)
 
 
 
