@@ -1,8 +1,7 @@
 ---
 title: The Three Axis of Change
 date: "2020-10-24"
-summary: "Change is hard, especially when it comes to weight loss.  Success requires a multi-pronged approach, including (1) psychological factors, (2) environmental factors, and (3) social factors.
-"
+summary: "Change is hard, especially when it comes to weight loss.  Success requires a multi-pronged approach, including (1) psychological factors, (2) environmental factors, and (3) social factors."
 ---
 
 ## The Three Axis of Change
