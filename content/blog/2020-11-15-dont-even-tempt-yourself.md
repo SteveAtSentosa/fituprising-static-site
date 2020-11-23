@@ -1,5 +1,5 @@
 ---
-title: "When The Stakes are High, Don't Even Temp Yourself"
+title: "When The Stakes are High, Don't Tempt Yourself"
 date: "2020-11-15"
 summary: "Will power is over rated.  You simply can't fight human nature for a sustained periods of time.  It is folly to put a strong temptation in front of yourself and think your raw will power will prevail, often it won't."
 ---
