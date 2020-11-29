@@ -1,7 +1,7 @@
 ---
 title: Recovering From A Spiral
 date: "2020-11-29"
-summary: "During weight loss there are going to be set backs.  It is not a question of if, but when, After all we are human.  The big question is how do you recover, especially after a significant downward spiral."
+summary: "During weight loss there are going to be set backs.  It is not a question of if, but when (after all we are human).  The real question, however, is how do you recover, especially after a significant downward spiral."
 ---
 
 # Thanksgiving Crash
