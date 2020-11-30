@@ -31,7 +31,9 @@ Recover
 * Determine the damage and face up to it
 * Don't despair
 * Revisit your whys
+* Take small actions to swing your momenum back in the right direction
 * Lean on social connections
+* Rengage the healthy habits that you have developed
 * It's OK to adjust your goals
 * A new Beginning
 ```
